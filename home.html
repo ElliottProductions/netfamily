@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Banner</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #banner {
+            width: 100%;
+            height: 50%;
+            background-color: black;
+            position: relative;
+        }
+        #movieContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #movieText {
+            position: absolute;
+            color: white;
+            font-size: 32px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            bottom: 20px;
+            left: 40%;
+            transform: translateX(-50%);
+        }
+        #movieList {
+            width: 100%;
+            height: 50%;
+            overflow-y: auto;
+            background-color: #000000;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .movieItem {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .movieImage {
+            width: 400px;
+            height: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .movieImage img {
+            width: 100%;
+            height: auto;
+        }
+        .movieOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .movieItem:hover .movieOverlay {
+            opacity: 1;
+        }
+        #netfamlogo {
+            background-color: #000000;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <img src="netfamilylogo.png" id="netfamlogo">
+
+</img>
+    <div id="banner">
+        <div id="movieContainer">
+            <video id="moviePlayer" width="100%" height="100%" autoplay>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="movieText"></div>
+        </div>
+    </div>
+    <div id="movieList">
+        <div class="movieItem" onmouseenter="playMovie('MVicePrev.mp4', 'Miami Vice')" onmouseleave="stopMovie()">
+            <div class="movieImage">
+                <img src="maimivice.png" alt="Movie 1">
+                <div class="movieOverlay">Miami Vice</div>
+            </div>
+        </div>
+        <div class="movieItem" onmouseenter="playMovie('GenerationPprev.mp4', 'Generation П')" onmouseleave="stopMovie()">
+            <div class="movieImage">
+                <img src="generationp.jpg" alt="Movie 2">
+                <div class="movieOverlay">Generation "П"</div>
+            </div>
+        </div>
+        <div class="movieItem" onmouseenter="playMovie('ep1teaser.mp4', 'Sacrifice Zone')" onmouseleave="stopMovie()">
+            <div class="movieImage">
+                <img src="sacrificezone.jpg" alt="Movie 3">
+                <div class="movieOverlay">Sacrifice Zone</div>
+            </div>
+        </div>
+        <!-- Add more movie items here -->
+    </div>
+
+    <script>
+        var videoPlayer = document.getElementById('moviePlayer');
+        var movieText = document.getElementById('movieText');
+
+        function playMovie(src, title) {
+            videoPlayer.src = src;
+            movieText.innerText = title;
+            videoPlayer.play();
+        }
+
+        function stopMovie() {
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+            movieText.innerText = '';
+        }
+    </script>
+</body>
+</html>
